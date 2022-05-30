@@ -9,6 +9,7 @@ import { TransactionsModule } from './transactions/transactions.module';
     TransactionsModule,
     MongooseModule.forRoot(
       'mongodb+srv://admin:dgPgp05dURXOJTOF@cluster0.zx9pjqs.mongodb.net/?retryWrites=true&w=majority'
+      
       )
   ],
   controllers: [AppController],
