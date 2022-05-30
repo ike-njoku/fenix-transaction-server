@@ -8,7 +8,7 @@ import { Transaction, TransactionSchema } from './transaction.schema';
   controllers: [TransactionsController],
   providers: [TransactionsService],
   imports: [
-    MongooseModule.forFeature([{ name: Transaction.name, schema: TransactionSchema }], 'transactions'),
+    MongooseModule.forFeature([{ name: Transaction.name, schema: TransactionSchema }]),
   ]
 })
 export class TransactionsModule {}
