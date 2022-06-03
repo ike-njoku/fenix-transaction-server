@@ -1,6 +1,6 @@
 import { SubscribeMessage, WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
 
-@WebSocketGateway(80,
+@WebSocketGateway(
   {
     cors: ['http://localhost:4200/', 'https://demo-fenix-sms.herokuapp.com/']
   }
