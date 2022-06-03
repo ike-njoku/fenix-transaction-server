@@ -15,6 +15,7 @@ export class TransactionsService {
   ) {}
   
   async create(createTransactionDto: CreateTransactionDto) {
+    console.log('creating transaction')
     let response: ResponseDto = {
       status: 'fail',
       message: '',
@@ -29,6 +30,7 @@ export class TransactionsService {
         response.status = 'success';
         response.message = 'Payment Saved';
         response.data = document;
+        console.log(document);
         this.transactionGateWay.handleMessage('transaction', document);
       })
       .catch((error) => {

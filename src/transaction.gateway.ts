@@ -11,7 +11,7 @@ export class TransactionGateway {
   
   @SubscribeMessage('transaction')
   handleMessage(client: any, payload: any): string {
-    let emitMessage = this.server.emit('transacton', payload);
+    let emitMessage = this.server.emit('transaction', payload);
     if (emitMessage) {
       console.log('emitted')
     } else console.log('did not emit')
