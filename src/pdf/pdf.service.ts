@@ -7,10 +7,6 @@ const fs = require('fs');
 export class PdfService {
 
   drawPdf(transaction: any) {
-    let transactionDate = transaction.paymentTimestamp;
-    console.log(new Date().toISOString())
-
-
     console.log('building pdf')
     const doc = new PDFDocument();
     doc.pipe(fs.createWriteStream(`public/${transaction._id}.pdf`));
@@ -30,10 +26,11 @@ export class PdfService {
       .text(transaction.transactionRef, 440, 200)
       .text('Payment Reference:', 80, 230)
       .text(transaction.paymentRef, 440, 230)
-      .text('Barcode Reference:', 80, 260)
-      .text(transaction._id, 150, 290)
+      // .text('Barcode Reference:', 80, 260)
+      // .text(transaction._id, 150, 290)
       .text('Date:', 80, 310)
       .text(transaction.paymentTimestamp , 440, 310)
     doc.end();
+    console.log('Done building pdf');
   }
 }
