@@ -25,13 +25,13 @@ export class PdfService {
       .text('Kwara State Harmonised School Management System. (KSHSMS)', 150, 80)
       .fontSize(18)
       .text('Transaction Reference:', 80, 200)
-      .text(transaction.transactionRef, 440, 200)
+      .text(`transaction.transactionRef`, 440, 200)
       .text('Payment Reference:', 80, 230)
-      .text(transaction.paymentRef, 440, 230)
+      .text(`transaction.paymentRef`, 440, 230)
       // .text('Barcode Reference:', 80, 260)
       // .text(transaction._id, 150, 290)
       .text('Date:', 80, 310)
-      .text(transaction.paymentTimestamp , 440, 310)
+      .text(`transaction.paymentTimestamp` , 440, 310)
     doc.end();
     console.log('Done building pdf');
   }
