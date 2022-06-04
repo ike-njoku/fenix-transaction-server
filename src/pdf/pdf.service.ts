@@ -17,6 +17,7 @@ export class PdfService {
       align: 'center',
       valign: 'center'
     });
+    console.log('drawn the image');
 
     doc
       // .font('fonts/PalatinoBold.ttf')
