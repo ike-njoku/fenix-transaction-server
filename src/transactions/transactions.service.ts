@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { PdfService } from 'src/pdf/pdf.service';
 import { ResponseDto } from 'src/response-dto.interface';
 import { TransactionGateway } from 'src/transaction.gateway';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
@@ -11,6 +12,7 @@ import { Transaction, TransactionDocument } from './transaction.schema';
 export class TransactionsService {
   constructor(
     private transactionGateWay: TransactionGateway,
+    private pdfService: PdfService,
     @InjectModel(Transaction.name) private transactionModel: Model<TransactionDocument>
   ) {}
   
@@ -40,9 +42,17 @@ export class TransactionsService {
   }
 
   findAll() {
-    console.log('route hit');
-    this.transactionGateWay.handleMessage('transaction', {name: 'test'})
-    return `This action returns all transactions`;
+    let transaction = {
+        message: 'Test Message',
+        Status: 'Paid',
+        paymentAmount: 190000,
+        transactionRef: 'A12MN79',
+        sourceRef: 'A1001',
+        paymentRef: 'A1002',
+        paymentChannel: 'Web',
+        paymentTimestamp: Date.now(),
+    }
+    return this.pdfService.drawPdf(transaction);
   }
 
   findOne(id: number) {

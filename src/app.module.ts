@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TransactionsModule } from './transactions/transactions.module';
 import { TransactionGateway } from './transaction.gateway';
+import { PdfService } from './pdf/pdf.service';
 
 @Module({
   imports: [
@@ -13,6 +14,6 @@ import { TransactionGateway } from './transaction.gateway';
       )
   ],
   controllers: [AppController],
-  providers: [AppService, TransactionGateway],
+  providers: [AppService, TransactionGateway, PdfService],
 })
 export class AppModule {}

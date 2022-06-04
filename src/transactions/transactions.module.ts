@@ -4,12 +4,14 @@ import { TransactionsController } from './transactions.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Transaction, TransactionSchema } from './transaction.schema';
 import { TransactionGateway } from 'src/transaction.gateway';
+import { PdfService } from 'src/pdf/pdf.service';
 
 @Module({
   controllers: [TransactionsController],
   providers: [
     TransactionsService,
-    TransactionGateway
+    TransactionGateway,
+    PdfService
   ],
   imports: [
     MongooseModule.forFeature([{ name: Transaction.name, schema: TransactionSchema }]),
