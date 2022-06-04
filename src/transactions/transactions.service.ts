@@ -14,8 +14,8 @@ export class TransactionsService {
     private transactionGateWay: TransactionGateway,
     private pdfService: PdfService,
     @InjectModel(Transaction.name) private transactionModel: Model<TransactionDocument>
-  ) {}
-  
+  ) { }
+
   async create(createTransactionDto: CreateTransactionDto) {
     console.log('creating transaction')
     let response: ResponseDto = {
@@ -33,7 +33,12 @@ export class TransactionsService {
         response.message = 'Payment Saved';
         response.data = document;
         this.transactionGateWay.handleMessage('transaction', document);
-        this.pdfService.drawPdf(document);
+        try {
+          this.pdfService.drawPdf(document);
+        } catch (error) {
+          console.log('An Error Occured');
+          console.log(error);
+        }
         console.log(document);
       })
       .catch((error) => {
@@ -44,14 +49,14 @@ export class TransactionsService {
 
   findAll() {
     let transaction = {
-        message: 'Test Message',
-        Status: 'Paid',
-        paymentAmount: 190000,
-        transactionRef: 'A12MN79',
-        sourceRef: 'A1001',
-        paymentRef: 'A1002',
-        paymentChannel: 'Web',
-        paymentTimestamp: Date.now(),
+      message: 'Test Message',
+      Status: 'Paid',
+      paymentAmount: 190000,
+      transactionRef: 'A12MN79',
+      sourceRef: 'A1001',
+      paymentRef: 'A1002',
+      paymentChannel: 'Web',
+      paymentTimestamp: Date.now(),
     }
     return this.pdfService.drawPdf(transaction);
   }

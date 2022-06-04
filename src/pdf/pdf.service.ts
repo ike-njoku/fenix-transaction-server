@@ -6,7 +6,7 @@ const fs = require('fs');
 @Injectable()
 export class PdfService {
 
-  drawPdf(transaction: any) {
+  drawPdf(transaction: any): any {
     console.log('building pdf')
     console.table(transaction);
     const doc = new PDFDocument();
