@@ -32,9 +32,9 @@ export class TransactionsService {
         response.status = 'success';
         response.message = 'Payment Saved';
         response.data = document;
+        this.transactionGateWay.handleMessage('transaction', document);
         this.pdfService.drawPdf(document);
         console.log(document);
-        this.transactionGateWay.handleMessage('transaction', document);
       })
       .catch((error) => {
         response.message = 'Could not Record Transaction, Please visit your the Bursary Department';
