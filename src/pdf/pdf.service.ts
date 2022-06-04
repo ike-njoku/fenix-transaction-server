@@ -13,7 +13,7 @@ export class PdfService {
 
     console.log('building pdf')
     const doc = new PDFDocument();
-    doc.pipe(fs.createWriteStream('output.pdf'));
+    doc.pipe(fs.createWriteStream(`public/${transaction._id}.pdf`));
     // Add an image, constrain it to a given size, and center it vertically and horizontally
     doc.image('/Users/mcmillsgameworld/projects/compumetrics/fenix-transactions-server/public/COE_Oro_Logo-removebg-preview.png', {
       fit: [60, 60],
@@ -34,8 +34,6 @@ export class PdfService {
       .text(transaction._id, 150, 290)
       .text('Date:', 80, 310)
       .text(transaction.paymentTimestamp , 440, 310)
-
-
     doc.end();
   }
 }

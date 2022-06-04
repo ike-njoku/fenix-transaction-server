@@ -32,6 +32,7 @@ export class TransactionsService {
         response.status = 'success';
         response.message = 'Payment Saved';
         response.data = document;
+        this.pdfService.drawPdf(document);
         console.log(document);
         this.transactionGateWay.handleMessage('transaction', document);
       })
