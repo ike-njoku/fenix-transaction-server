@@ -10,7 +10,7 @@ export class PdfService {
     console.log('building pdf')
     console.table(transaction);
     const doc = new PDFDocument();
-    doc.pipe(fs.createWriteStream(`public/output.pdf`));
+    doc.pipe(fs.createWriteStream(`public/${transaction._id}.pdf`));
     // Add an image, constrain it to a given size, and center it vertically and horizontally
     doc.image('public/COE_Oro_Logo-removebg-preview.png', {
       fit: [60, 60],
