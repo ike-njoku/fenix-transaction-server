@@ -116,8 +116,8 @@ export class TransactionsService {
         console.log('fetching all transactions for '+ user.userName);
         response.data = documents;
         response.message = 'Fetched all Transaction Receipts';
-        response.status = 'success'
-
+        response.status = 'success';
+        console.log(documents)
       })
       .catch((error) => {
         response.message = 'An error occured';
