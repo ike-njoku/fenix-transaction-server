@@ -32,13 +32,15 @@ export class TransactionsService {
         response.status = 'success';
         response.message = 'Payment Saved';
         response.data = document;
-        
+
         console.log(document);
       })
       .catch((error) => {
         response.message = 'Could not Record Transaction, Please visit your the Bursary Department';
         response.data = error;
       })
+
+    return response;
   }
 
   findAll() {
@@ -66,7 +68,7 @@ export class TransactionsService {
       data: undefined
     }
 
-    
+
     const filter = { _id: updateTransactionDto._id };
     const newData = {
       message: updateTransactionDto.message,
@@ -77,13 +79,13 @@ export class TransactionsService {
       paymentTimestamp: updateTransactionDto.paymentTimestamp
 
     };
-    const options = {new: true};
+    const options = { new: true };
     await this.transactionModel.findOneAndUpdate(filter, newData, options)
       .then((document) => {
         console.log(document);
         response.status = 'success';
         response.data = document;
-        response.message ="Your transaction has been confirmed";
+        response.message = "Your transaction has been confirmed";
         this.transactionGateWay.handleMessage('transaction', document);
         try {
           this.pdfService.drawPdf(document);
@@ -98,7 +100,7 @@ export class TransactionsService {
         response.data = error;
         response.message = 'There was an error UPdating the payment';
       })
-      return response;
+    return response;
   }
 
   remove(id: number) {
