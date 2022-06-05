@@ -10,5 +10,4 @@ export class UpdateTransactionDto extends PartialType(CreateTransactionDto) {
   paymentRef: string;
   paymentChannel: string;
   paymentTimestamp: string;
-  _id: string
 }
