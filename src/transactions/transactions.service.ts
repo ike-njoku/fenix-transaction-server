@@ -59,7 +59,7 @@ export class TransactionsService {
     return `This action returns a #${id} transaction`;
   }
 
-  async update(id: string, updateTransactionDto: UpdateTransactionDto) {
+  async update(updateTransactionDto: UpdateTransactionDto) {
     let response: ResponseDto = {
       status: 'fail',
       message: '',
@@ -67,11 +67,11 @@ export class TransactionsService {
     }
 
 
-    const filter = { _id: updateTransactionDto._id };
+    const filter = { transactionRef: updateTransactionDto.transactionRef };
     const newData = {
       message: updateTransactionDto.message,
       Status: updateTransactionDto.Status,
-      transactionRef: updateTransactionDto.transactionRef,
+      // transactionRef: updateTransactionDto.transactionRef,
       paymentRef: updateTransactionDto.paymentRef,
       paymentChannel: updateTransactionDto.paymentChannel,
       paymentTimestamp: updateTransactionDto.paymentTimestamp
