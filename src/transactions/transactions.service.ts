@@ -84,6 +84,8 @@ export class TransactionsService {
         response.status = 'success';
         response.data = document;
         response.message = "Your transaction has been confirmed";
+        console.log('Transaction updated');
+        console.log(document);
         this.transactionGateWay.handleMessage('transaction', document);
         try {
           this.pdfService.drawPdf(document);
