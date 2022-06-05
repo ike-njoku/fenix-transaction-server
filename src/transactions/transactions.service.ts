@@ -90,7 +90,7 @@ export class TransactionsService {
         try {
           this.pdfService.drawPdf(document);
         } catch (error) {
-          console.log('An Error Occured');
+          console.log('An Error Occured while updating transaction');
           console.log(error);
         };
       })
