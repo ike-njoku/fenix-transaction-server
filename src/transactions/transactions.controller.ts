@@ -2,6 +2,9 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { TransactionsService } from './transactions.service';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { UpdateTransactionDto } from './dto/update-transaction.dto';
+export interface GetUserTransactions {
+  userName: string
+}
 
 @Controller('transactions')
 export class TransactionsController {
@@ -27,6 +30,13 @@ export class TransactionsController {
   update(@Body() updateTransactionDto: UpdateTransactionDto) {
     return this.transactionsService.update(updateTransactionDto);
   }
+
+
+  @Post('my-receipts')
+  getMyReceipts(@Body() user: GetUserTransactions) {
+    return this.transactionsService.getUserReceipts(user);
+  }
+
 
   @Delete(':id')
   remove(@Param('id') id: string) {

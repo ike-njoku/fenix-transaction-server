@@ -7,6 +7,7 @@ import { TransactionGateway } from 'src/transaction.gateway';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { UpdateTransactionDto } from './dto/update-transaction.dto';
 import { Transaction, TransactionDocument } from './transaction.schema';
+import { GetUserTransactions } from './transactions.controller';
 
 @Injectable()
 export class TransactionsService {
@@ -101,6 +102,30 @@ export class TransactionsService {
         response.message = 'There was an error UPdating the payment';
       })
     return response;
+  }
+
+  async getUserReceipts(user: GetUserTransactions) {
+    let response: ResponseDto = {
+      status: 'success',
+      message: '',
+      data: undefined
+    }
+
+    await this.transactionModel.find({payerEmail: user.userName})
+      .then((documents) => {
+        console.log('fetching all transactions for '+ user.userName);
+        response.data = documents;
+        response.message = 'Fetched all Transaction Receipts';
+        response.status = 'success'
+
+      })
+      .catch((error) => {
+        response.message = 'An error occured';
+        response.data = error;
+        console.log('An error occured')
+      })
+
+      return response;
   }
 
   remove(id: number) {
