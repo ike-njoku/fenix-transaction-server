@@ -23,8 +23,6 @@ export class TransactionsService {
       message: '',
       data: undefined
     }
-    console.log('logging this from the service');
-    console.log(createTransactionDto);
 
     let transaction = new this.transactionModel(createTransactionDto);
     transaction.save()
@@ -32,8 +30,7 @@ export class TransactionsService {
         response.status = 'success';
         response.message = 'Payment Saved';
         response.data = document;
-
-        console.log(document);
+        console.log('Successfully saved transaction');
       })
       .catch((error) => {
         response.message = 'Could not Record Transaction, Please visit your the Bursary Department';
