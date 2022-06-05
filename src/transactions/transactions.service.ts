@@ -17,6 +17,7 @@ export class TransactionsService {
   ) { }
 
   async create(createTransactionDto: CreateTransactionDto) {
+
     console.log('creating transaction')
     let response: ResponseDto = {
       status: 'fail',
@@ -25,7 +26,7 @@ export class TransactionsService {
     }
 
     let transaction = new this.transactionModel(createTransactionDto);
-    transaction.save()
+    await transaction.save()
       .then((document) => {
         response.status = 'success';
         response.message = 'Payment Saved';
