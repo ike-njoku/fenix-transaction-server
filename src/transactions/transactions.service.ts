@@ -44,14 +44,30 @@ export class TransactionsService {
 
   findAll() {
     let transaction = {
-      message: 'Test Message',
-      Status: 'Paid',
-      paymentAmount: 190000,
-      transactionRef: 'A12MN79',
-      sourceRef: 'A1001',
-      paymentRef: 'A1002',
-      paymentChannel: 'Web',
-      paymentTimestamp: Date.now(),
+      _id: '666799qrqo99adsfsad',
+      _v: '',
+      paymentAmount: 75000,
+      returnUrl: '',
+      revenueCode: '123219889098',
+      revenueName: '100 Level School Fees',
+      payerFirstname: 'David',
+      payerLastname: 'Ike-Njoku',
+      payerMiddlename: 'Chukwunweike',
+      payerTin: '99999999',
+      payerEmail: 'ikenjokudc@gmail.com',
+      payerPhone: '07038792802',
+      payerUserId: '20151021983',
+      transactionRef: '1023261654451749275',
+      sourceKey: '',
+      mdaName: 'College of Education Owerri',
+      currency: 'NGN',
+      items: [],
+      message: 'Your Payment was received',
+      Status: 'PAID',
+      sourceRef: '1002',
+      paymentRef: '1023261654451749275',
+      paymentChannel: 'WEB',
+      paymentTimestamp: '1234567890987654'
     }
     return this.pdfService.drawPdf(transaction);
   }
