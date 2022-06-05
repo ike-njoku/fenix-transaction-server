@@ -32,13 +32,7 @@ export class TransactionsService {
         response.status = 'success';
         response.message = 'Payment Saved';
         response.data = document;
-        this.transactionGateWay.handleMessage('transaction', document);
-        try {
-          this.pdfService.drawPdf(document);
-        } catch (error) {
-          console.log('An Error Occured');
-          console.log(error);
-        }
+        
         console.log(document);
       })
       .catch((error) => {
@@ -65,8 +59,46 @@ export class TransactionsService {
     return `This action returns a #${id} transaction`;
   }
 
-  update(id: number, updateTransactionDto: UpdateTransactionDto) {
-    return `This action updates a #${id} transaction`;
+  async update(id: string, updateTransactionDto: UpdateTransactionDto) {
+    let response: ResponseDto = {
+      status: 'fail',
+      message: '',
+      data: undefined
+    }
+
+    
+    const filter = { _id: updateTransactionDto._id };
+    const newData = {
+      message: updateTransactionDto.message,
+      Status: updateTransactionDto.Status,
+      transactionRef: updateTransactionDto.transactionRef,
+      paymentRef: updateTransactionDto.paymentRef,
+      paymentChannel: updateTransactionDto.paymentChannel,
+      paymentTimestamp: updateTransactionDto.paymentTimestamp
+
+    };
+    const options = {new: true};
+    await this.transactionModel.findOneAndUpdate(filter, newData, options)
+      .then((document) => {
+        console.log(document);
+        response.status = 'success';
+        response.data = document;
+        response.message ="Your transaction has been confirmed";
+        this.transactionGateWay.handleMessage('transaction', document);
+        try {
+          this.pdfService.drawPdf(document);
+        } catch (error) {
+          console.log('An Error Occured');
+          console.log(error);
+        };
+      })
+
+      .catch((error) => {
+        console.log('There was an error in updating the document');
+        response.data = error;
+        response.message = 'There was an error UPdating the payment';
+      })
+      return response;
   }
 
   remove(id: number) {

@@ -1,12 +1,20 @@
 import { TransactionStatus } from "../transaction.schema";
 
 export class CreateTransactionDto {
-  message: string;
-  Status: TransactionStatus
-  paymentAmount: number;
+  paymentAmount: number
+  returnUrl: string;
+  revenueCode: string;
+  revenueName: string;
+  payerFirstname: string;
+  payerLastname: string;
+  payerMiddlename: string;
+  payerTin: string;
+  payerEmail: string;
+  payerPhone: string;
+  payerUserId: string;
   transactionRef: string;
-  sourceRef: string;
-  paymentRef: string;
-  paymentChannel: string;
-  paymentTimestamp: string;
+  sourceKey: string;
+  mdaName: string;
+  currency: string;
+  items: any[]
 }

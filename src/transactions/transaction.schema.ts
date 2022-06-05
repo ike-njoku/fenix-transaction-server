@@ -6,12 +6,41 @@ export type TransactionDocument = Transaction & Document;
 @Schema()
 export class Transaction {
   @Prop()
+  paymentAmount: number
+  @Prop()
+  returnUrl: string;
+  @Prop()
+  revenueCode: string;
+  @Prop()
+  revenueName: string;
+  @Prop()
+  payerFirstname: string;
+  @Prop()
+  payerLastname: string;
+  @Prop()
+  payerMiddlename: string;
+  @Prop()
+  payerTin: string;
+  @Prop()
+  payerEmail: string;
+  @Prop()
+  payerPhone: string;
+  @Prop()
+  payerUserId: string;
+  @Prop()
+  transactionRef: string;
+  @Prop()
+  sourceKey: string;
+  @Prop()
+  mdaName: string;
+  @Prop()
+  currency: string;
+  @Prop()
+  items: any[];
+  @Prop()
   message: string;
   @Prop()
   Status: TransactionStatus
-  paymentAmount: number;
-  @Prop()
-  transactionRef: string;
   @Prop()
   sourceRef: string;
   @Prop()
